@@ -58,18 +58,81 @@ printProfileData(profileDataArgs); */
 } */
 
 const promptUser = () => {
+console.log(`
+=================
+Profile Questions
+=================
+`)
+
     return inquirer
     .prompt([
-        // pass questions here
         {
             type: 'input',
-            name: 'username',
-            message: 'What is your name?',
+            name: 'name',
+            message: 'What is your name?'
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your GitHub username?'
+        },
+        {
+            type: 'input',
+            name: 'about',
+            message: 'Tell us about yourself.'
         }
     ]);
-}
+};
 
-promptUser().then(answers => console.log(answers));
+const promptProject = () => {
+console.log(`
+=================
+Add a New Project
+=================
+`)
+
+    return inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'What is the title of your project?'
+            },
+            {
+                type: 'input',
+                name: 'description',
+                message: 'Provide a description of your project. (Required)'
+            },
+            {
+                type: 'checkbox',
+                name: 'languages',
+                message: 'What programming languages are being used for this project? (Check all that apply)',
+                choices: ['HTML', 'CSS', 'JavaScript', 'ES6', 'jQuery', 'Bootstrap', 'Node.js']
+            },
+            {
+                type: 'input',
+                name: 'link',
+                message: 'Please provide a link to your project. (Required)'
+            },
+            {
+                type: 'confirm',
+                name: 'feature',
+                message: 'Would you like to feature this project?',
+                default: false
+            },
+            {
+                type: 'confirm',
+                name: 'confirmAddProject',
+                message: 'Would you like to enter another project?',
+                default: false
+            }
+        ]);
+};
+
+promptUser()
+    .then(answers => console.log(answers))
+    .then(promptProject)
+    .then(projectAnswers => console.log(projectAnswers));
 
 /* console.log(user, github);
 console.log(generatePage(user, github)); */
