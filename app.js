@@ -1,5 +1,7 @@
-const fs = require('fs');
-const generatePage = require('./src/page-template');
+//const fs = require('fs');
+const inquirer = require('inquirer');
+
+//const generatePage = require('./src/page-template');
 // *******************************************************************************************
 // const creates a constant reference to the JavaScript element indicated when it is created.
 // For strings and numbers, the content cannot be altered, because the reference is 
@@ -8,7 +10,7 @@ const generatePage = require('./src/page-template');
 // *******************************************************************************************
 
 // collect command-line arguments and feed them to generatePage()
-const profileDataArgs = process.argv.slice(2) /* , process.argv.length) */; // removes first two indexes
+/* const profileDataArgs = process.argv.slice(2) */ /* , process.argv.length) */; // removes first two indexes
 /* console.log(profileDataArgs); */
 
 // extract profileDataArgs and store them into distinct variables
@@ -17,7 +19,7 @@ const profileDataArgs = process.argv.slice(2) /* , process.argv.length) */; // r
 const github = profileDataArgs[1]; */
 
 // ...same as this
-const [user, github] = profileDataArgs;
+/* const [user, github] = profileDataArgs; */
 
 /* console.log(name);
 console.log(github); */
@@ -55,12 +57,27 @@ printProfileData(profileDataArgs); */
     `;
 } */
 
+const promptUser = () => {
+    return inquirer
+    .prompt([
+        // pass questions here
+        {
+            type: 'input',
+            name: 'username',
+            message: 'What is your name?',
+        }
+    ]);
+}
+
+promptUser().then(answers => console.log(answers));
+
 /* console.log(user, github);
 console.log(generatePage(user, github)); */
 
-const pageHTML = generatePage(user, github);
+//const pageHTML = generatePage(user, github);
 
-fs.writeFile('index.html', pageHTML, (err) => {
-    if (err) throw err;
-    console.log('Portfolio complete! Check out index.html to see the output!');
-});
+//fs.writeFile('index.html', pageHTML, (err) => {
+//    if (err) throw err;
+//    console.log('Portfolio complete! Check out index.html to see the output!');
+//});
+
