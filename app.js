@@ -95,9 +95,23 @@ Profile Questions
             }
         },
         {
+            type: 'confirm',
+            name: 'confirmAbout',
+            message: 'Do you want to add an "About" section?',
+            default: false
+        },
+        {
             type: 'input',
             name: 'about',
-            message: 'Tell us about yourself.'
+            message: 'Tell us about yourself.',
+            when: ({confirmAbout}) => {
+                if (confirmAbout) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
         }
     ]);
 };
