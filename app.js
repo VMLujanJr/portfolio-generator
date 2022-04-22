@@ -1,7 +1,7 @@
-//const fs = require('fs');
+const fs = require('fs');
 const inquirer = require('inquirer');
+const generatePage = require('./src/page-template');
 
-//const generatePage = require('./src/page-template');
 // *******************************************************************************************
 // const creates a constant reference to the JavaScript element indicated when it is created.
 // For strings and numbers, the content cannot be altered, because the reference is 
@@ -57,7 +57,53 @@ printProfileData(profileDataArgs); */
     `;
 } */
 
-const promptUser = () => {
+const mockData = {
+        name: 'Lernantino',
+        github: 'lernantino',
+        confirmAbout: true,
+        about:
+          'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et.',
+        projects: [
+          {
+            name: 'Run Buddy',
+            description:
+              'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+            languages: ['HTML', 'CSS'],
+            link: 'https://github.com/lernantino/run-buddy',
+            feature: true,
+            confirmAddProject: true
+          },
+          {
+            name: 'Taskinator',
+            description:
+              'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+            languages: ['JavaScript', 'HTML', 'CSS'],
+            link: 'https://github.com/lernantino/taskinator',
+            feature: true,
+            confirmAddProject: true
+          },
+          {
+            name: 'Taskmaster Pro',
+            description:
+              'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+            languages: ['JavaScript', 'jQuery', 'CSS', 'HTML', 'Bootstrap'],
+            link: 'https://github.com/lernantino/taskmaster-pro',
+            feature: false,
+            confirmAddProject: true
+          },
+          {
+            name: 'Robot Gladiators',
+            description:
+              'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque.',
+            languages: ['JavaScript'],
+            link: 'https://github.com/lernantino/robot-gladiators',
+            feature: false,
+            confirmAddProject: false
+          }
+        ]
+      };
+
+/* const promptUser = () => {
 console.log(`
 =================
 Profile Questions
@@ -114,7 +160,7 @@ Profile Questions
             }
         }
     ]);
-};
+}; */
 
 const promptProject = portfolioData => {
 console.log(`
@@ -202,11 +248,18 @@ Add a New Project
         });
 };
 
-promptUser()
+const pageHTML = generatePage(mockData);
+
+/* promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        console.log(portfolioData);
-    });
+        const pageHTML = generatePage(portfolioData);
+
+        // fs.writeFile('./index.html', pageHTML, err => {
+        //    if (err) throw new Error(err);
+        //    console.log('Page created! Checkout index.html in this directory to see it!');    
+        //});
+    }); */
 
 /* console.log(user, github);
 console.log(generatePage(user, github)); */
