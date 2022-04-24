@@ -10,7 +10,7 @@ const generatePage = require('./src/page-template');
 // *******************************************************************************************
 
 // collect command-line arguments and feed them to generatePage()
-/* const profileDataArgs = process.argv.slice(2) */ /* , process.argv.length) */; // removes first two indexes
+/* const profileDataArgs = process.argv.slice(2) */ /* , process.argv.length); */ // removes first two indexes
 /* console.log(profileDataArgs); */
 
 // extract profileDataArgs and store them into distinct variables
@@ -57,7 +57,7 @@ printProfileData(profileDataArgs); */
     `;
 } */
 
-const mockData = {
+/* const mockData = {
         name: 'Lernantino',
         github: 'lernantino',
         confirmAbout: true,
@@ -101,9 +101,9 @@ const mockData = {
             confirmAddProject: false
           }
         ]
-      };
+      }; */
 
-/* const promptUser = () => {
+const promptUser = () => {
 console.log(`
 =================
 Profile Questions
@@ -160,7 +160,7 @@ Profile Questions
             }
         }
     ]);
-}; */
+};
 
 const promptProject = portfolioData => {
 console.log(`
@@ -248,18 +248,18 @@ Add a New Project
         });
 };
 
-const pageHTML = generatePage(mockData);
+/* const pageHTML = generatePage(mockData); */
 
-/* promptUser()
+promptUser()
     .then(promptProject)
     .then(portfolioData => {
         const pageHTML = generatePage(portfolioData);
 
-        // fs.writeFile('./index.html', pageHTML, err => {
-        //    if (err) throw new Error(err);
-        //    console.log('Page created! Checkout index.html in this directory to see it!');    
-        //});
-    }); */
+        fs.writeFile('./index.html', pageHTML, err => {
+            if (err) throw new Error(err);
+            console.log('Page created! Checkout index.html in this directory to see it!');    
+        });
+    });
 
 /* console.log(user, github);
 console.log(generatePage(user, github)); */
